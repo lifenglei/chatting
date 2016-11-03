@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!-- <script src="css/jquery.min.js" type="text/javascript"></script> -->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<link href="css/center.css"  rel="stylesheet"  type="text/css">
+<title>高仿QQ聊天面板</title>
+<style type="text/css">
+body{
+    background: #fff !important;
+    color:#747474;
+}
+.textbox{
+    bottom:85px;
+    border-top: 1px solid #747474;
+    width: 741px;
+}
+button.btn.confirm {
+    float: right;
+    margin-right: 15px;
+    padding: 4px 20px;
+    background: #4d9be0;
+    color: #fff;
+    border: 1px;
+    cursor: pointer;
+}
+button.btn.confirm:hover{
+    background:#2e76b5;
+}
+textarea{
+    width:97%;
+    height:55px;
+    border: 0;
+    outline: none;
+    resize:none;
+    padding: 8px;
+}
+/*滚动条垂直方向的宽度*/
+::-webkit-scrollbar
+{
+    width: 2px;
+}
+/* 垂直滚动条的滑动块 */
+::-webkit-scrollbar-thumb:vertical {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color:rgba(129,129,129,0.5);
+}
+.wrap{
+    width:960px;
+    height: 555px;
+    margin:40px auto;
+    font-size: 14px;
+}
+.box_left{
+    width:207px;
+    height:555px;
+    border:1px solid #797979;
+    float: left;
+}
+.title_left{
+    background:#f4f4f4;
+    border-bottom:1px solid #797979;
+    padding:10px;
+}
+.content_left{
+    /*overflow: auto;*/
+    height: 507px;
+    /*border: 1px solid #c5c5c5;*/
+    overflow-y: scroll;
+}
+.content_left img{
+    margin-right: 6px;
+
+}
+.content_left ul{
+    padding:6px 6px;
+}
+.content_left ul li{
+    line-height: 34px;
+    padding: 5px;
+}
+.content_left ul li:hover{
+    background:#f4f4f4;
+}
+.user_img{
+    width:36px;
+    height: 36px;
+    border-radius: 2px;
+}
+.box_right{
+    width:743px;
+    height:555px;
+    border:1px solid #797979;
+    float: right;
+
+}
+.title_right{
+    padding:10px;
+    text-align: center;
+    background:#f4f4f4;
+    border-bottom: 1px solid #797979;
+}
+.content_right{
+    padding:7px 25px;
+    margin-bottom:30px;
+    overflow: auto;
+    height: 355px;
+}
+.message_time{
+    text-align: center;
+}
+.message_left{
+    position: relative;
+    margin-bottom:30px;
+}
+.message_left_content{
+    background:#e8c088;
+    padding:8px;
+    color:#fff;
+    border-radius: 4px;
+    margin-left: 8px;
+    position: absolute;
+       word-wrap: break-word;
+    min-height: 25px;
+}
+.message_right{
+      float:right;
+      position: relative;
+      margin-bottom: 30px;
+      width:80%;
+          padding-right: 36px;
+       text-align:right;
+}
+.message_right img{
+    /* float: right; */
+    position: absolute;
+    right:0;
+    top:0;
+}
+.message_right_content{
+    background: #4e9be0;
+    padding: 8px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 8px;
+    display: inline-block;
+    /*position: absolute;*/
+
+    right: 38px;
+word-wrap:break-word;
+word-break:break-all;
+}
+.face{
+    bottom:10px;
+    left:20px;
+    width:30px;
+    height:30px;
+    cursor: pointer;
+    padding-left: 20px;
+}
+/*表情插件*/
+.comment{width:680px; margin:20px auto; position:relative; background:#fff; padding:20px 50px 50px; border:1px solid #DDD; border-radius:5px;}
+.comment h3{height:28px; line-height:28px}
+.com_form{width:100%; position:relative}
+.input{width:99%; height:60px; border:1px solid #ccc}
+.com_form p{height:28px; line-height:28px; position:relative; margin-top:10px;}
+span.emotion{width:42px; height:20px; background:url(http://www.16code.com/cache/demos/user-say/img/icon.gif) no-repeat 2px 2px; padding-left:20px; cursor:pointer}
+span.emotion:hover{background-position:2px -28px}
+.qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;}
+.qqFace table td{padding:0px;}
+.qqFace table td img{cursor:pointer;border:1px #fff solid;}
+.qqFace table td img:hover{border:1px #0066cc solid;}
+#show{width:770px; margin:20px auto; background:#fff; padding:5px; border:1px solid #DDD; vertical-align:top;}
+
+.sub_btn {
+    position:absolute; right:0px; top:0;
+    display: inline-block;
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    *display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.6);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    color: #e8f0de;
+    border: solid 1px #538312;
+    background: #64991e;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+    background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.sub_btn:hover {
+    background: #538018;
+    background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+    background: -moz-linear-gradient(top,  #6b9d28,  #436b0c);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+
+.face img{
+    width: 25px;
+}
+.facemore{
+    width:320px;
+    padding:8px;
+    border:1px solid #ddd;
+    overflow: hidden;
+    top:30px;
+    left:24px;
+    position: absolute;
+    background: #fff;
+}
+.facemore img{
+    float: left;
+    padding-bottom: 3px;
+}
+
+.info{
+    position:relative;
+    /*padding-top: 8px;*/
+}
+.message_right .message_right_content img{
+    position:relative;
+}
+#textarea{
+    height:66px;
+    padding:8px;
+    overflow: scroll;
+    outline: none;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!--  左侧部分 -->
+<div class="box_left">
+    <div class="title_left">好友列表</div>
+    <div class="content_left">
+       <ul>
+           <li>
+                <img src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=c9db76993fdbb6fd250eed223c14872e/b58f8c5494eef01fa228daa7e6fe9925bc317d90.jpg" alt="" class="user_img"> <span>特鲁姆普</span>
+           </li>
+            <li >
+                <img src="http://imgsrc.baidu.com/forum/w%3D580/sign=bd08cad53912b31bc76ccd21b6193674/f4a1bfec8a136327ac5594a1918fa0ec09fac763.jpg" alt="" class="user_img"> <span>塞尔比</span>
+           </li>
+       </ul>
+    </div>
+</div>
+
+
+<!-- 右侧部分 -->
+<div class="box_right">
+    <div class="title_right">会话</div>
+<!-- 蹭产 -->
+    <div class="content_right">
+      <div class="message_time hide">
+        2016/11/03 13:28:25
+      </div>
+      <div class="message_left">
+          <img src="http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=c9db76993fdbb6fd250eed223c14872e/b58f8c5494eef01fa228daa7e6fe9925bc317d90.jpg" alt="" class="user_img">
+          <span class="message_left_content">我喜欢玩斯诺克</span>
+      </div>
+       <div class="message_right">
+          <img src="http://imgsrc.baidu.com/forum/w%3D580/sign=bd08cad53912b31bc76ccd21b6193674/f4a1bfec8a136327ac5594a1918fa0ec09fac763.jpg" alt="" class="user_img">
+          <span class="message_right_content">你玩的真棒</span>
+      </div>
+       <div class="message_right">
+          <img src="http://imgsrc.baidu.com/forum/w%3D580/sign=bd08cad53912b31bc76ccd21b6193674/f4a1bfec8a136327ac5594a1918fa0ec09fac763.jpg" alt="" class="user_img">
+          <span class="message_right_content">期待你有好的表现</span>
+      </div>
+    </div>
+
+    <div class="textbox">
+            <div id="textarea" contenteditable="true"></div>
+            <div class="info">
+                <button class="btn  confirm">发送</button>
+            </div>
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+//绑定事件区域
+$(document).ready(function(){
+    mainmethod.enter();
+    $(".confirm").on('click',mainmethod.sendmessage);
+    $(".content_left li").on('click',mainmethod.vastar)
+})
+//定义方法区域
+var mainmethod = {
+    //发送消息方法
+    sendmessage:function(){
+        var $val= $("#textarea").html();
+        if($val ==""){
+            alert('输入为空,请重新输入')
+        }else{
+            $(".content_right").append("<div class='message_right'><img src='http://imgsrc.baidu.com/forum/w%3D580/sign=bd08cad53912b31bc76ccd21b6193674/f4a1bfec8a136327ac5594a1918fa0ec09fac763.jpg' alt='' class='user_img'><span class='message_right_content'>"+$val+"</span></div>");
+            setTimeout("$('.content_right').scrollTop( $('.content_right')[0].scrollHeight )",100)
+            $("#textarea").html('').focus();
+        }
+
+
+    },
+    //切换说话对象方法
+    vastar:function(){
+        var $val2=$(this).find("span").html();
+        var $img=$(this).find("img").attr("src");
+        // 给要添加的地方
+        $(".title_right").html($val2);
+        $(".content_right").html("");
+    },
+    //点击enter键，发送消息
+    enter:function(){
+        $("#textarea").keydown(function(e){
+            var e=e||window.event;
+            if(e.keyCode==13) {
+               e.preventDefault();
+               mainmethod.sendmessage();
+            }
+          })
+    }
+   
+}
+
+</script>
+</body>
+</html>
+
+
+
