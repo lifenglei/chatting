@@ -5,13 +5,13 @@
 ######什么是适配呢？做pc端的时候我们按照设计图的尺寸来就好，定宽定高的，可是当我们做移动端的时候，设计师同样给你一宽度为640px的设计图，那么我们把这个设计图呈现在不同手机上的过程就是适配。
 ######根据博主做的移动端经验，总结下“市场”上最流行的三种适配方案
 ####1.固定高度宽度自适应
-######这种方案是目前用的最多的方案，垂直方向用定值，水平方向则用百分比或者flex或者定值，腾讯，京东都是这样做的，具体的demo可以参考本人上传在github上的<method_first.html>
+######这种方案是目前用的最多的方案，垂直方向用定值，水平方向则用百分比或者flex或者定值，腾讯，京东都是这样做的，具体的demo可以参考本人上传在github上的method_first.html
 ######这种方法使用了完美视口：
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 ######这样设置之后我们就不用管手机屏幕尺寸大小进行开发了，会不会觉得这段代码很熟悉，对，这个和bootstrap上的一样，毕竟bootstrap移动设备优先嘛。
 ####2.固定宽度，viewport缩放
 ######设计图，页面宽度，viewportwidth都使用一个宽度，浏览器帮我们完成缩放，单位使用px即可
-######具体的demo可以参考本人在github上的<method_second.html>
+######具体的demo可以参考本人在github上的method_second.html
 ######这种方法主要是原理是根据屏幕的宽度来动态生成viewport，生成的viewport基本都是这样的
 	<meta name="viewport" content="width=640,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no">
 ######640是我们根据设计图定下的，0.5则是根据屏幕尺寸动态生成的
@@ -23,4 +23,4 @@
 ######2.屏幕宽度设置 rem的大小，即给<html>设置font-size
 ######3.根据设备像素比（window.devicePixelRatio）给<html>设置data-dpr
 ######这么设置的好处是可以让不同设备的rem或px都显示一样的长度。
-######具体的demo可以参考本人在github上传的<method_third.html>
+######具体的demo可以参考本人在github上传的method_third.html
