@@ -1,0 +1,21 @@
+  * {
+            box-sizing: border-box;
+            margin: 0;
+            -webkit-text-size-adjust: none;
+        }
+        html {
+            background-color: #f7f7f7;
+        }
+        body {
+            width:16.0rem;
+            margin: 0 auto;
+            line-height: 1.4;
+            background-color: #fff;
+        }
+        img{
+            width:100%;
+            height:auto;
+        }
+        .top{
+            margin-top:0.25rem;
+        }
